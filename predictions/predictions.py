@@ -188,6 +188,57 @@ with open('pl_predictions.csv', 'wb') as myFile:
     pickle.dump(predictions, myFile)  
 with open('../web_server/pl_predictions.csv', 'wb') as myFile:
     pickle.dump(predictions, myFile)  
+    
+# Full predictions.py script
+
+import time
+import pickle
+import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+
+start = time.time()
+
+# Modular prediction functions
+
+def get_fixtures():
+    return pd.read_csv('fixtures.csv') 
+
+def get_stats():
+    with open('stats.pkl', 'rb') as f:
+        return pickle.load(f)
+
+def engineer_features(stats):
+    # Create features   
+    return features  
+
+def train_model(features, target):
+    # Train model
+    return model
+
+def predict(model, fixtures, features):
+    # Make predictions
+    return fixture_predictions
+
+# Main script
+
+fixtures = get_fixtures()
+stats = get_stats()
+
+features = engineer_features(stats)
+
+goals_model = train_model(features, 'avg_goals')
+cards_model = train_model(features, 'avg_cards')
+offsides_model = train_model(features, 'avg_offsides') 
+
+goals_preds = predict(goals_model, fixtures, features)
+cards_preds = predict(cards_model, fixtures, features)
+offsides_preds = predict(offsides_model, fixtures, features)
+
+print(goals_preds) 
+print(cards_preds)
+print(offsides_preds)
+
+print('Script runtime:', time.time() - start)
 
 
 # ----------------------------------- END -------------------------------------
